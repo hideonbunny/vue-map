@@ -1,4 +1,10 @@
 The main content is in src/App.vue file
+!!!IMPORTANT!!!
+Replace "key=REPLACE_KEY_HERE" in both index.html and src/App.vue(where I implement fetchTimeZone(lat, lng) method) with the Google map API key I provided in the email.
+!!!
+
+
+
 
 
 Task: Create a web page with the following features:
