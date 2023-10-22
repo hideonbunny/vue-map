@@ -74,6 +74,7 @@ export default {
     }
   },
   methods: {
+    //initialize the google map;
     initializeMap() {
       const myLatLng = { lat: -25.363, lng: 131.044 }
       this.map = new google.maps.Map(document.getElementById('map'), {
@@ -81,6 +82,7 @@ export default {
         center: myLatLng
       })
     },
+    //get the user's current location;
     getCurrentLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -94,6 +96,7 @@ export default {
         alert('Geolocation is not supported by this browser.')
       }
     },
+    //get the location on the map based on user's input, it will pop up an alert if the input place is invalid;
     searchLocation() {
       const geocoder = new google.maps.Geocoder()
       geocoder.geocode({ address: this.locationName }, (results, status) => {
@@ -107,6 +110,9 @@ export default {
         }
       })
     },
+    //add the input location into the location array;
+    //add a corresponding marker on the map;
+    //add the marker into the markers array;
     addLocation(pos, name) {
       const marker = new google.maps.Marker({
         position: pos,
@@ -122,6 +128,7 @@ export default {
       this.map.setCenter(pos)
       this.fetchTimeZone(pos.lat, pos.lng)
     },
+    //get the local timezone based on the user's input location;
     async fetchTimeZone(lat, lng) {
       const timestamp = Math.round(new Date().getTime() / 1000)
       const apiUrl = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=REPLACE_KEY_HERE`
@@ -140,6 +147,7 @@ export default {
         console.error('Error:', error)
       }
     },
+    //get the local time based on the user's input location;
     displayLocalTime(timeZoneId) {
       const localTime = new Intl.DateTimeFormat('en-US', {
         timeZone: timeZoneId,
@@ -149,7 +157,8 @@ export default {
 
       this.localTime = localTime
     },
-
+    //remove markers from the map based on the selected want-to-delete locations;
+    //update markers and locations array;
     deleteSelected() {
       for (let i = this.markers.length - 1; i >= 0; i--) {
         console.log('markers before deleting', this.markers)
@@ -163,7 +172,7 @@ export default {
         }
       }
     },
-    // delete all markers and locations on the map
+    // delete all markers and locations on the map;
     deleteAll() {
       for (let i = 0; i < this.markers.length; i++) {
         const marker = this.markers[i]
