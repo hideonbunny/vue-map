@@ -124,7 +124,7 @@ export default {
     },
     async fetchTimeZone(lat, lng) {
       const timestamp = Math.round(new Date().getTime() / 1000)
-      const apiUrl = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=AIzaSyCwyZsBBnUhh32qBRe_dk_2Apc-CTcR9L0`
+      const apiUrl = `https://maps.googleapis.com/maps/api/timezone/json?location=${lat},${lng}&timestamp=${timestamp}&key=REPLACE_KEY_HERE`
 
       try {
         const response = await fetch(apiUrl)
