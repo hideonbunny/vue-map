@@ -1,3 +1,6 @@
+The main content is in src/App.vue file
+
+
 Task: Create a web page with the following features:
 
 A button to allow users to acquire their current location from their browser.
